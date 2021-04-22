@@ -43,3 +43,23 @@ function showTrips() {
     })
   });
 }
+
+function showTotalSpentOnTrips() {
+  let specificUserTravels = travelData.trips.filter(trip => trip.userID === 44);
+  let travelerMoney = specificUserTravels.reduce((total, travel) => {
+    destinationData.destinations.filter(trip => {
+      if (trip.id === travel.destinationID) {
+        if (new Date(travel.date).getFullYear() === 2021) {
+          let amountLodging = trip.estimatedLodgingCostPerDay * travel.duration;
+          console.log('amountLodging', amountLodging);
+          let amountFlight = trip.estimatedFlightCostPerPerson * travel.travelers;
+          console.log('amountFlight', amountFlight);
+          total += amountLodging += amountFlight;
+        }
+      }
+    });
+    return total;
+  }, 0);
+  let totalWithAgentFee = travelerMoney + (travelerMoney * 0.10);
+  totalSpent.innerText = `Total spent on trips: $${Math.round(totalWithAgentFee)}`;
+}
