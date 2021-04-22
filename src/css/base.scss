@@ -13,7 +13,7 @@ header {
   background-color: #faf8f7;
   width: 100%;
   top: 0;
-  //position: absolute;
+  position: absolute;
   left: 0;
   border-bottom: .5px solid #37323E;
 }
@@ -24,7 +24,40 @@ header {
   padding-left: 5px
 }
 
-.header-container {
+.wanderlust-container {
   display: flex;
   align-items: center;
+}
+
+.trip-booking {
+  margin-top: 100px;
+}
+
+/* ~~~~~~ Your Trips Section ~~~~~~~*/
+
+.all-trips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-row-gap: 10px;
+  margin-left: 20px;
+  //height: 50vh;
+}
+
+.trip-container {
+  display: flex;
+  flex-direction: column;
+  width: 23vw;
+  height: 55vh;
+  border: 1px solid #37323E;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #37323E;
+  background-color: #C3F3C0;
+  opacity: 0.9;
+}
+
+.vacation-pic {
+  align-self: center;
+  width: 22vw;
+  height: 20vh;
 }
