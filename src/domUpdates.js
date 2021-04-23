@@ -3,7 +3,13 @@ import TripRepository from './TripRepository'
 let travelData;
 let destinationData;
 let trips = document.querySelector('#allTrips');
-const submitButton = document.querySelector('#sumbit');
+const submitButton = document.querySelector('#submitButton');
+const destinationDropdown = document.querySelector('#localityDropdown');
+let defaultOption = document.createElement('option');
+let startCalendarInput = document.querySelector('.start');
+let endCalendarInput = document.querySelector('.end');
+let durationInput = document.querySelector('#duration');
+let travelerInput = document.querySelector('#numTravelers');
 
 const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
   .then(response => response.json())
@@ -17,10 +23,11 @@ const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
   .then(data => destinationData = data)
   .then(data => showTrips())
   .then(data => showTotalSpentOnTrips())
+  .then(data => fillInDestinationDropdown())
   .catch(err => err.message);
 
 window.addEventListener('load', getData());
-//submitButton.addEventListener('click', checkValidation);
+submitButton.addEventListener('click', checkValidation);
 
 function getData() {
   travelGET();
@@ -55,6 +62,31 @@ function showTotalSpentOnTrips() {
   totalSpent.innerText = `Total spent on trips this year: $${Math.round(amountOfMoneySpent)}`;
 }
 
-// function checkValidation() {
-//
-// }
+function fillInDestinationDropdown() {
+  defaultOption.text = 'Choose destination';
+  destinationDropdown.add(defaultOption);
+  destinationDropdown.selectedIndex = 0;
+  let option;
+  destinationData.destinations.map(trip => {
+    option = document.createElement('option');
+    option.text = trip.destination;
+    destinationDropdown.add(option);
+  })
+}
+
+function checkValidation() {
+  event.preventDefault();
+  if (destinationDropdown.value === 'Choose destination') {
+    alert('Please choose a valid desination.');
+  } else if (startCalendarInput.value !== new Date(startCalendarInput.value).toDateString()) {
+    alert('Please choose a valid date.');
+  } else if (endCalendarInput.value !== new Date(endCalendarInput.value).toDateString()) {
+    alert('Please choose a valid date.');
+  } else if (durationInput.value < 0 || !durationInput.value) {
+    alert('Please choose a valid duration.')
+  } else if (!travelerInput.value) {
+    alert('Please choose number of travelers going on trip.');
+  } else {
+    submitForm();
+  }
+}
