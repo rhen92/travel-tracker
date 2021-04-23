@@ -1,4 +1,5 @@
-import TripRepository from './TripRepository'
+import TripRepository from './TripRepository';
+import Trip from './Trip';
 
 let travelData;
 let destinationData;
@@ -10,6 +11,7 @@ let startCalendarInput = document.querySelector('.start');
 let endCalendarInput = document.querySelector('.end');
 let durationInput = document.querySelector('#duration');
 let travelerInput = document.querySelector('#numTravelers');
+let tripRepository;
 
 const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
   .then(response => response.json())
@@ -35,7 +37,7 @@ function getData() {
 }
 
 function showTrips() {
-  let tripRepository = new TripRepository(travelData.trips, destinationData.destinations)
+  tripRepository = new TripRepository(travelData.trips, destinationData.destinations);
   let specificUserTravels = tripRepository.findUsersTravel(44);
   let individualInfo = specificUserTravels.map(travel => {
     destinationData.destinations.filter(trip => {
@@ -56,7 +58,6 @@ function showTrips() {
 }
 
 function showTotalSpentOnTrips() {
-  let tripRepository = new TripRepository(travelData.trips, destinationData.destinations)
   let specificUserTravels = tripRepository.findUsersTravel(44);
   let amountOfMoneySpent = tripRepository.findTotalTripCostForUser(specificUserTravels);
   totalSpent.innerText = `Total spent on trips this year: $${Math.round(amountOfMoneySpent)}`;
@@ -89,4 +90,18 @@ function checkValidation() {
   } else {
     submitForm();
   }
+}
+
+function submitForm() {
+  let currentDate = new Date(startCalendarInput.value);
+  let trip = {
+    id: tripRepository.findNextAvailableID(),
+    userID: 44,
+    destinationID: tripRepository.findDestinationID(destinationDropdown.value),
+    travelers: travelerInput.value,
+    date: `${currentDate.getFullYear()}/${currentDate.getMonth() + 1}/${currentDate.getDate()}`,
+    duration: durationInput.value,
+  };
+  let createdTrip = new Trip(trip);
+  console.log(createdTrip)
 }
