@@ -1,4 +1,6 @@
 //import { travelGET, travelData } from './apiCalls'
+import TripRepository from './TripRepository'
+
 let travelData;
 let destinationData;
 let trips = document.querySelector('#allTrips');
@@ -7,15 +9,17 @@ const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
   .then(response => response.json())
   .then(data => travelData = data)
   .then(data => showTrips())
+  .then(data => showTotalSpentOnTrips())
   .catch(err => err.message);
 
 const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
   .then(response => response.json())
   .then(data => destinationData = data)
   .then(data => showTrips())
+  .then(data => showTotalSpentOnTrips())
   .catch(err => err.message);
 
-window.addEventListener('load', getData)
+window.addEventListener('load', getData);
 
 function getData() {
   travelGET();
@@ -23,9 +27,8 @@ function getData() {
 }
 
 function showTrips() {
-  let specificUserTravels = travelData.trips.filter(trip => trip.userID === 44);
-  console.log(specificUserTravels);
-  console.log(destinationData)
+  let tripRepository = new TripRepository(travelData.trips, destinationData.destinations)
+  let specificUserTravels = tripRepository.findUsersTravel(44);
   let individualInfo = specificUserTravels.map(travel => {
     destinationData.destinations.filter(trip => {
       if (trip.id === travel.destinationID) {
@@ -45,21 +48,8 @@ function showTrips() {
 }
 
 function showTotalSpentOnTrips() {
-  let specificUserTravels = travelData.trips.filter(trip => trip.userID === 44);
-  let travelerMoney = specificUserTravels.reduce((total, travel) => {
-    destinationData.destinations.filter(trip => {
-      if (trip.id === travel.destinationID) {
-        if (new Date(travel.date).getFullYear() === 2021) {
-          let amountLodging = trip.estimatedLodgingCostPerDay * travel.duration;
-          console.log('amountLodging', amountLodging);
-          let amountFlight = trip.estimatedFlightCostPerPerson * travel.travelers;
-          console.log('amountFlight', amountFlight);
-          total += amountLodging += amountFlight;
-        }
-      }
-    });
-    return total;
-  }, 0);
-  let totalWithAgentFee = travelerMoney + (travelerMoney * 0.10);
-  totalSpent.innerText = `Total spent on trips: $${Math.round(totalWithAgentFee)}`;
+  let tripRepository = new TripRepository(travelData.trips, destinationData.destinations)
+  let specificUserTravels = tripRepository.findUsersTravel(44);
+  let amountOfMoneySpent = tripRepository.findTotalTripCostForUser(specificUserTravels);
+  totalSpent.innerText = `Total spent on trips: $${Math.round(amountOfMoneySpent)}`;
 }
