@@ -15,6 +15,5 @@ const end = datepicker('.end', { id: 1,
 
 function calculateRange() {
   let value = end.getRange();
-  console.log('value', value);
-  return (value.end - value.start) / (1000 * 60 * 60 * 24);
+  return Math.round((value.end - value.start) / (1000 * 60 * 60 * 24));
 }
