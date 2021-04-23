@@ -1,9 +1,9 @@
-//import { travelGET, travelData } from './apiCalls'
 import TripRepository from './TripRepository'
 
 let travelData;
 let destinationData;
 let trips = document.querySelector('#allTrips');
+const submitButton = document.querySelector('#sumbit');
 
 const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
   .then(response => response.json())
@@ -19,7 +19,8 @@ const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
   .then(data => showTotalSpentOnTrips())
   .catch(err => err.message);
 
-window.addEventListener('load', getData);
+window.addEventListener('load', getData());
+//submitButton.addEventListener('click', checkValidation);
 
 function getData() {
   travelGET();
@@ -51,5 +52,9 @@ function showTotalSpentOnTrips() {
   let tripRepository = new TripRepository(travelData.trips, destinationData.destinations)
   let specificUserTravels = tripRepository.findUsersTravel(44);
   let amountOfMoneySpent = tripRepository.findTotalTripCostForUser(specificUserTravels);
-  totalSpent.innerText = `Total spent on trips: $${Math.round(amountOfMoneySpent)}`;
+  totalSpent.innerText = `Total spent on trips this year: $${Math.round(amountOfMoneySpent)}`;
 }
+
+// function checkValidation() {
+//
+// }
