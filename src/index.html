@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
   <head>
-    <title>Webpack Starter Kit</title>
+    <meta charset="utf-8">
+    <title>Wanderlust</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/29bccbf253.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+    <header>
+      <div class="wanderlust-container">
+        <i class="fas fa-globe-americas"></i>
+        <h1>Wanderlust</h1>
+      </div>
+    </header>
+    <form class="trip-booking">
+      <h3>Book a Trip</h3>
+      <input type="text" placeholder="Duration of Trip" required aria-required="true"></input>
+      <button>Submit</button>
+    </form>
+    <section>
+      <h3>Your trips</h3>
+      <section id="allTrips" class="all-trips"></section>
+      <h3 id=totalSpent>Placeholder</h3>
+    </section>
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
