@@ -144,9 +144,9 @@ function submitForm(trip) {
 }
 
 function clearInputFields() {
-  startCalendarInput.value = ' ';
-  endCalendarInput.value = ' ';
-  durationInput.value = ' ';
+  startCalendarInput.value = 'Start date';
+  endCalendarInput.value = 'End date';
+  durationInput.value = 'Duration';
   travelerInput.value = ' ';
   destinationDropdown.value = 'Choose destination';
   tripCost.innerText = ' ';
@@ -163,9 +163,9 @@ function showNewTrip() {
     <ol>Duration: ${createdTrip.duration} days</ol>
     <ol>Travelers: ${createdTrip.travelers}</ol>
     <ol>Date: ${new Date(createdTrip.date).toDateString()}</ol>
-  </article>`
-)}
-})
+  </article>`)
+  }
+  });
 }
 
 function checkLoginValidation() {
