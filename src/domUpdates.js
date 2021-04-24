@@ -31,8 +31,8 @@ const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
   .catch(err => err.message);
 
 window.addEventListener('load', getData());
-//submitButton.addEventListener('click', checkValidation);
-tripForm.addEventListener('input', checkValidation);
+submitButton.addEventListener('click', checkValidation);
+tripForm.addEventListener('input', createTrip);
 
 function getData() {
   travelGET();
@@ -79,7 +79,6 @@ function fillInDestinationDropdown() {
 }
 
 function checkValidation() {
-  event.preventDefault();
   if (destinationDropdown.value === 'Choose destination') {
     alert('Please choose a valid desination.');
   } else if (startCalendarInput.value !== new Date(startCalendarInput.value).toDateString()) {
@@ -107,9 +106,21 @@ function createTrip() {
   };
   let createdTrip = new Trip(trip);
   showTripCost(createdTrip);
+  submitForm(createdTrip);
 }
 
 function showTripCost(trip) {
   let tripAmount = trip.findEstimatedCostOfTrip(destinationData);
   tripCost.innerText = `Cost for Trip: $${tripAmount}`;
+}
+
+function submitForm(trip) {
+  fetch('http://localhost:3001/api/v1/trips', {
+    method: 'Post',
+    body: JSON.stringify(trip),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .catch(err => err.message)
 }
