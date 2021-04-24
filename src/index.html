@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Wanderlust</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
   <script src="https://kit.fontawesome.com/29bccbf253.js" crossorigin="anonymous"></script>
@@ -15,22 +16,27 @@
         <h1>Wanderlust</h1>
       </div>
     </header>
-    <form id="tripBooking" class="trip-booking">
-      <h3>Book a Trip</h3>
-      <label>Start date</label>
-      <input id="calendar 1" class="start" required aria-required="true"></input>
-      <label>End Date</label>
-      <input id="calendar 2" class="end" required aria-required="true"></input>
-      <input id="duration" type="text" placeholder="Duration of Trip" readonly></input>
-      <input id="numTravelers" type="number" placeholder="Number of Travelers" min="1" required aria-required="true"></input>
-      <select id="localityDropdown" name="locality"></select>
-      <p id="tripCost"></p>
-      <button id="submitButton">Submit</button>
-    </form>
+    <div class="middle-container">
+      <form id="tripBooking" class="trip-booking">
+        <div class="input-container">
+          <h3>Book a Trip</h3>
+          <input id="calendar 1" class="start input-design" placeholder="Start date" required aria-required="true"></input>
+          <input id="calendar 2" class="end input-design" placeholder="End date" required aria-required="true"></input>
+          <input id="duration" class="input-design" type="text" placeholder="Duration of Trip" readonly></input>
+          <input id="numTravelers" class="input-design" type="number" placeholder="Number of Travelers" min="1" required aria-required="true"></input>
+          <select id="localityDropdown" class="input-design" name="locality"></select>
+          <p id="tripCost"></p>
+          <button id="submitButton" class="submit-button" >Submit</button>
+        </div>
+      </form>
+      <img class="scenery" src="./images/travel.jpg" alt="person sitting on bridge overlooking nature">
+    </div>
     <section>
-      <h3>Your trips</h3>
+      <div class="h3-container">
+        <h3>Your trips</h3>
+        <h3 id=totalSpent class="total-spent">Placeholder</h3>
+      </div>
       <section id="allTrips" class="all-trips"></section>
-      <h3 id=totalSpent>Placeholder</h3>
     </section>
   </section>
   <section id="loginPage" class="login-page">
