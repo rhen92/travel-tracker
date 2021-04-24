@@ -3,14 +3,16 @@ import Trip from './Trip';
 
 let travelData;
 let destinationData;
-let trips = document.querySelector('#allTrips');
+const trips = document.querySelector('#allTrips');
 const submitButton = document.querySelector('#submitButton');
 const destinationDropdown = document.querySelector('#localityDropdown');
-let defaultOption = document.createElement('option');
-let startCalendarInput = document.querySelector('.start');
-let endCalendarInput = document.querySelector('.end');
-let durationInput = document.querySelector('#duration');
-let travelerInput = document.querySelector('#numTravelers');
+const defaultOption = document.createElement('option');
+const startCalendarInput = document.querySelector('.start');
+const endCalendarInput = document.querySelector('.end');
+const durationInput = document.querySelector('#duration');
+const travelerInput = document.querySelector('#numTravelers');
+const tripCost = document.querySelector('#tripCost');
+const tripForm = document.querySelector('#tripBooking');
 let tripRepository;
 
 const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
@@ -29,7 +31,8 @@ const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
   .catch(err => err.message);
 
 window.addEventListener('load', getData());
-submitButton.addEventListener('click', checkValidation);
+//submitButton.addEventListener('click', checkValidation);
+tripForm.addEventListener('input', checkValidation);
 
 function getData() {
   travelGET();
@@ -88,11 +91,11 @@ function checkValidation() {
   } else if (!travelerInput.value) {
     alert('Please choose number of travelers going on trip.');
   } else {
-    submitForm();
+    createTrip();
   }
 }
 
-function submitForm() {
+function createTrip() {
   let currentDate = new Date(startCalendarInput.value);
   let trip = {
     id: tripRepository.findNextAvailableID(),
@@ -103,5 +106,10 @@ function submitForm() {
     duration: durationInput.value,
   };
   let createdTrip = new Trip(trip);
-  console.log(createdTrip)
+  showTripCost(createdTrip);
+}
+
+function showTripCost(trip) {
+  let tripAmount = trip.findEstimatedCostOfTrip(destinationData);
+  tripCost.innerText = `Cost for Trip: $${tripAmount}`;
 }
