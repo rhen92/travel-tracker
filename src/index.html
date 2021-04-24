@@ -8,7 +8,7 @@
   <script src="https://kit.fontawesome.com/29bccbf253.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <section class="hidden">
+  <section id="mainPage" class="hidden">
     <header>
       <div class="wanderlust-container">
         <i class="fas fa-globe-americas"></i>
@@ -18,9 +18,9 @@
     <form id="tripBooking" class="trip-booking">
       <h3>Book a Trip</h3>
       <label>Start date</label>
-      <input id="1" class="start" required aria-required="true"></input>
+      <input id="calendar 1" class="start" required aria-required="true"></input>
       <label>End Date</label>
-      <input id="1" class="end" required aria-required="true"></input>
+      <input id="calendar 2" class="end" required aria-required="true"></input>
       <input id="duration" type="number" placeholder="Duration of Trip" readonly></input>
       <input id="numTravelers" type="number" placeholder="Number of Travelers" min="1" required aria-required="true"></input>
       <select id="localityDropdown" name="locality"></select>
@@ -33,7 +33,7 @@
       <h3 id=totalSpent>Placeholder</h3>
     </section>
   </section>
-  <section class="login-page">
+  <section id="loginPage" class="login-page">
     <form class="login-form">
       <div class="login-container">
         <div class="wanderlust-container">
@@ -41,9 +41,9 @@
           <h1>Wanderlust</h1>
         </div>
         <h3>Log In</h3>
-        <input class="login-input" placeholder="username"></input>
-        <input class="login-input" placeholder="password"></input>
-        <button class="login-button">Login</button>
+        <input id="usernameInput" class="login-input" placeholder="username" required aria-required="true"></input>
+        <input id="passwordInput" class="login-input secret" type="password" placeholder="password" required aria-required="true"></input>
+        <button id="loginButton" class="login-button">Login</button>
     </div>
     </form>
   </section>
