@@ -155,7 +155,7 @@ function clearInputFields() {
 function showNewTrip() {
   destinationData.destinations.filter(trip => {
     if (trip.id === createdTrip.destinationID) {
-  trips.insertAdjacentHTML('beforeend',
+  trips.insertAdjacentHTML('afterbegin',
   `  <article class="trip-container">
     <h4>${trip.destination}</h4>
     <img class="vacation-pic" src=${trip.image} alt=${trip.alt}>
