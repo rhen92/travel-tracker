@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Wanderlust</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
     <script src="https://kit.fontawesome.com/29bccbf253.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -13,17 +14,24 @@
         <h1>Wanderlust</h1>
       </div>
     </header>
-    <form class="trip-booking">
+    <form id="tripBooking" class="trip-booking">
       <h3>Book a Trip</h3>
-      <input type="text" placeholder="Duration of Trip" required aria-required="true"></input>
-      <button>Submit</button>
+      <label>Start date<label>
+      <input id="1" class="start" required aria-required="true"></input>
+      <label>End Date</label>
+      <input id="1" class="end" required aria-required="true"></input>
+      <input id="duration" type="number" placeholder="Duration of Trip" readonly></input>
+      <input id="numTravelers" type="number" placeholder="Number of Travelers" min="1" required aria-required="true"></input>
+      <select id="localityDropdown" name="locality"></select>
+      <p id="tripCost"></p>
+      <button id="submitButton">Submit</button>
     </form>
     <section>
       <h3>Your trips</h3>
       <section id="allTrips" class="all-trips"></section>
       <h3 id=totalSpent>Placeholder</h3>
     </section>
-
+    <script src="https://unpkg.com/js-datepicker"></script>
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>

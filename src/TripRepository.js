@@ -24,6 +24,16 @@ class TripRepository {
     let totalWithAgentFee = travelerMoney + (travelerMoney * 0.10);
     return totalWithAgentFee;
   }
+
+  findNextAvailableID() {
+    let lastIndex = this.allTrips.length - 1;
+    return this.allTrips[lastIndex].id + 1;
+  }
+
+  findDestinationID(destination) {
+    let foundDestination = this.destinations.find(trip => trip.destination === destination);
+    return foundDestination.id;
+  }
 }
 
 module.exports = TripRepository;
