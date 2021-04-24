@@ -123,7 +123,6 @@ function showTripCost(trip) {
 }
 
 function submitForm(trip) {
-  event.preventDefault();
   fetch('http://localhost:3001/api/v1/trips', {
     method: 'Post',
     body: JSON.stringify(trip),
