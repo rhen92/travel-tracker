@@ -34,7 +34,7 @@ const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
   .then(data => destinationData = data)
   .then(data => showTrips())
   .then(data => showTotalSpentOnTrips())
-  .then(data => fillInDestinationDropdown())
+  //.then(data => fillInDestinationDropdown())
   .catch(err => err.message);
 
 window.addEventListener('load', getData());
@@ -123,6 +123,7 @@ function showTripCost(trip) {
 }
 
 function submitForm(trip) {
+  event.preventDefault();
   fetch('http://localhost:3001/api/v1/trips', {
     method: 'Post',
     body: JSON.stringify(trip),
@@ -166,4 +167,5 @@ function checkForUser() {
 function hideLoginPage() {
   loginPage.classList.add('hidden');
   mainPage.classList.remove('hidden');
+  fillInDestinationDropdown();
 }
