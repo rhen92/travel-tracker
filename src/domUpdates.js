@@ -21,6 +21,7 @@ const loginPage = document.querySelector('#loginPage');
 const mainPage = document.querySelector('#mainPage');
 let user;
 let tripRepository;
+let createdTrip;
 
 const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
   .then(response => response.json())
@@ -34,12 +35,11 @@ const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
   .then(data => destinationData = data)
   .then(data => showTrips())
   .then(data => showTotalSpentOnTrips())
-  //.then(data => fillInDestinationDropdown())
   .catch(err => err.message);
 
 window.addEventListener('load', getData());
 submitButton.addEventListener('click', checkValidation);
-tripForm.addEventListener('input', createTrip);
+tripForm.addEventListener('input', checkInputsFilledIn);
 loginButton.addEventListener('click', checkLoginValidation);
 
 function getData() {
@@ -60,7 +60,7 @@ function showTrips() {
           <ol>Status: ${travel.status}</ol>
           <ol>Duration: ${travel.duration} days</ol>
           <ol>Travelers: ${travel.travelers}</ol>
-          <ol>Date: ${travel.date}</ol>
+          <ol>Date: ${new Date(travel.date).toDateString()}</ol>
         </article>
         `;
       }
@@ -87,6 +87,7 @@ function fillInDestinationDropdown() {
 }
 
 function checkValidation() {
+  event.preventDefault();
   if (destinationDropdown.value === 'Choose destination') {
     alert('Please choose a valid desination.');
   } else if (startCalendarInput.value !== new Date(startCalendarInput.value).toDateString()) {
@@ -97,6 +98,14 @@ function checkValidation() {
     alert('Please choose a valid duration.')
   } else if (!travelerInput.value) {
     alert('Please choose number of travelers going on trip.');
+  } else {
+    submitForm(createdTrip);
+  }
+}
+
+function checkInputsFilledIn() {
+  if (!travelerInput.value || destinationDropdown.value === 'Choose destination') {
+    return;
   } else {
     createTrip();
   }
@@ -112,9 +121,8 @@ function createTrip() {
     date: `${currentDate.getFullYear()}/${currentDate.getMonth() + 1}/${currentDate.getDate()}`,
     duration: durationInput.value,
   };
-  let createdTrip = new Trip(trip);
+  createdTrip = new Trip(trip);
   showTripCost(createdTrip);
-  submitForm(createdTrip);
 }
 
 function showTripCost(trip) {
@@ -130,7 +138,34 @@ function submitForm(trip) {
       'Content-Type': 'application/json'
     }
   })
-    .catch(err => err.message)
+    .catch(err => err.message);
+    clearInputFields();
+    showNewTrip();
+}
+
+function clearInputFields() {
+  startCalendarInput.value = ' ';
+  endCalendarInput.value = ' ';
+  durationInput.value = ' ';
+  travelerInput.value = ' ';
+  destinationDropdown.value = 'Choose destination';
+  tripCost.innerText = ' ';
+}
+
+function showNewTrip() {
+  destinationData.destinations.filter(trip => {
+    if (trip.id === createdTrip.destinationID) {
+  trips.insertAdjacentHTML('beforeend',
+  `  <article class="trip-container">
+    <h4>${trip.destination}</h4>
+    <img class="vacation-pic" src=${trip.image} alt=${trip.alt}>
+    <ol>Status: ${createdTrip.status}</ol>
+    <ol>Duration: ${createdTrip.duration} days</ol>
+    <ol>Travelers: ${createdTrip.travelers}</ol>
+    <ol>Date: ${new Date(createdTrip.date).toDateString()}</ol>
+  </article>`
+)}
+})
 }
 
 function checkLoginValidation() {
