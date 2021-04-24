@@ -1,9 +1,9 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 //$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 
-// html {
-//   height: 100%
-// }
+* {
+  font-family: "Open Sans";
+}
 
 body {
   background: #49B6FF;
@@ -33,11 +33,53 @@ header {
   margin-top: 100px;
 }
 
+.input-container {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #37323E;
+  width: 43vw;
+  background-color: #FF8484;
+  opacity: 0.9;
+  box-shadow: 3px 3px 3px #37323E;
+}
+
+.input-design {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 40vw;
+  height: 3vh;
+  font-size: 15px;
+}
+
+.submit-button {
+  margin-bottom: 10px;
+  padding: 5px 10px 5px 10px;
+  font-size: 15px;
+}
+
+.scenery {
+  margin-top: 50px;
+  width: 60vw;
+  height: 55vh;
+}
+
+.middle-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .hidden {
   display: none!important;
 }
 
 /* ~~~~~~ Your Trips Section ~~~~~~~*/
+.h3-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .all-trips {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -91,9 +133,11 @@ header {
   width: 25vw;
   padding: 5px;
   margin: 10px;
+  font-size: 15px;
 }
 
 .login-button {
   width: 5vw;
   margin: 10px;
+  font-size: 15px;
 }
