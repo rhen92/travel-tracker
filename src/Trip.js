@@ -6,7 +6,7 @@ class Trip {
     this.travelers = vacation.travelers;
     this.date = vacation.date;
     this.duration = vacation.duration;
-    this.status = "pending";
+    this.status = 'pending';
     this.suggestedActivities = []
   }
 
