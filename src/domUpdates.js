@@ -24,14 +24,14 @@ let tripRepository;
 let createdTrip;
 
 const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
-  .then(response => response.json())
+  .then(response => checkResponseForGETS(response))
   .then(data => travelData = data)
   .then(data => showTrips())
   .then(data => showTotalSpentOnTrips())
   .catch(err => err.message);
 
 const destinationGET = () => fetch('http://localhost:3001/api/v1/destinations')
-  .then(response => response.json())
+  .then(response => checkResponseForGETS(response))
   .then(data => destinationData = data)
   .then(data => showTrips())
   .then(data => showTotalSpentOnTrips())
@@ -45,6 +45,14 @@ loginButton.addEventListener('click', checkLoginValidation);
 function getData() {
   travelGET();
   destinationGET();
+}
+
+function checkResponseForGETS(response) {
+  if(!response.ok) {
+    trips.innerText = 'Could not get your trip data.'
+  } else {
+    return response.json();
+  }
 }
 
 function showTrips() {
@@ -79,11 +87,13 @@ function fillInDestinationDropdown() {
   destinationDropdown.add(defaultOption);
   destinationDropdown.selectedIndex = 0;
   let option;
-  destinationData.destinations.map(trip => {
-    option = document.createElement('option');
-    option.text = trip.destination;
-    destinationDropdown.add(option);
-  })
+  if (destinationData) {
+    destinationData.destinations.map(trip => {
+      option = document.createElement('option');
+      option.text = trip.destination;
+      destinationDropdown.add(option);
+    });
+  }
 }
 
 function checkValidation() {
@@ -138,9 +148,19 @@ function submitForm(trip) {
       'Content-Type': 'application/json'
     }
   })
+    .then(response => checkResponse(response, trip))
     .catch(err => err.message);
-    clearInputFields();
+}
+
+function checkResponse(response, trip) {
+  if (response.ok) {
+    tripRepository.allTrips.push(trip);
     showNewTrip();
+    clearInputFields();
+    showTotalSpentOnTrips();
+  } else {
+    alert('Unable to register trip.');
+  }
 }
 
 function clearInputFields() {
