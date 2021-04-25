@@ -57,10 +57,10 @@ function showTrips() {
         <article class="trip-container">
           <h4>${trip.destination}</h4>
           <img class="vacation-pic" src=${trip.image} alt=${trip.alt}>
-          <ol>Status: ${travel.status}</ol>
-          <ol>Duration: ${travel.duration} days</ol>
-          <ol>Travelers: ${travel.travelers}</ol>
-          <ol>Date: ${new Date(travel.date).toDateString()}</ol>
+          <p>Status: ${travel.status}</p>
+          <p>Duration: ${travel.duration} days</p>
+          <p>Travelers: ${travel.travelers}</p>
+          <p>Date: ${new Date(travel.date).toDateString()}</p>
         </article>
         `;
       }
@@ -159,10 +159,10 @@ function showNewTrip() {
   `  <article class="trip-container">
     <h4>${trip.destination}</h4>
     <img class="vacation-pic" src=${trip.image} alt=${trip.alt}>
-    <ol>Status: ${createdTrip.status}</ol>
-    <ol>Duration: ${createdTrip.duration} days</ol>
-    <ol>Travelers: ${createdTrip.travelers}</ol>
-    <ol>Date: ${new Date(createdTrip.date).toDateString()}</ol>
+    <p>Status: ${createdTrip.status}</p>
+    <p>Duration: ${createdTrip.duration} days</p>
+    <p>Travelers: ${createdTrip.travelers}</p>
+    <p>Date: ${new Date(createdTrip.date).toDateString()}</p>
   </article>`)
   }
   });
