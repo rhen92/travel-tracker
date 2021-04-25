@@ -19,10 +19,10 @@
     <div class="middle-container">
       <form id="tripBooking" class="trip-booking">
         <div class="input-container">
-          <h3>Book a Trip</h3>
+          <h2>Book a Trip</h2>
           <input id="calendar 1" class="start input-design" placeholder="Start date" required aria-required="true"></input>
           <input id="calendar 2" class="end input-design" placeholder="End date" required aria-required="true"></input>
-          <input id="duration" class="input-design" type="text" placeholder="Duration of Trip" readonly></input>
+          <input id="duration" class="input-design" type="text" placeholder="Duration of Trip" required aria-required="true"></input>
           <input id="numTravelers" class="input-design" type="number" placeholder="Number of Travelers" min="1" required aria-required="true"></input>
           <select id="localityDropdown" class="input-design" name="locality"></select>
           <p id="tripCost"></p>
@@ -46,7 +46,7 @@
           <i class="fas fa-globe-americas"></i>
           <h1>Wanderlust</h1>
         </div>
-        <h3>Log In</h3>
+        <h2>Log In</h2>
         <input id="usernameInput" class="login-input" placeholder="username" required aria-required="true"></input>
         <input id="passwordInput" class="login-input secret" type="password" placeholder="password" required aria-required="true"></input>
         <button id="loginButton" class="login-button">Login</button>
