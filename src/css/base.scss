@@ -1,32 +1,33 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 //$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+@import './_normalize.css';
+@import './_variables';
+@import './_mixins';
 
 * {
   font-family: "Open Sans";
 }
 
 body {
-  background: #49B6FF;
+  background-color: $sky-blue;
 }
 
 header {
-  background-color: #FAF8F7;
+  background-color: $white;
   width: 100%;
   top: 0;
   position: absolute;
   left: 0;
-  border-bottom: .5px solid #37323E;
+  border-bottom: .5px solid $black-coffee;
 }
 
 .fas {
   font-size: 30px;
-  padding-right: 10px;
-  padding-left: 20px
+  padding: 0 10px 0 20px;
 }
 
 .wanderlust-container {
-  display: flex;
-  align-items: center;
+  @include displayStyle(row, center);
 }
 
 .trip-booking {
@@ -34,21 +35,14 @@ header {
 }
 
 .input-container {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  border: 1px solid #37323E;
+  @include displayStyle(column, center);
+  @include boxStyle(#FFFCE6)
   width: 43vw;
-  background-color: #FFFCE6;
-  box-shadow: 3px 3px 3px #37323E;
 }
 
 .input-design {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 40vw;
-  height: 3vh;
+  @include dimensions(3vh, 40vw);
+  margin: 5px 0 5px 0;
   font-size: 15px;
 }
 
@@ -60,13 +54,11 @@ header {
 
 .scenery {
   margin-top: 50px;
-  width: 60vw;
-  height: 55vh;
+  @include dimensions(55vh, 60vw);
 }
 
 .middle-container {
-  display: flex;
-  justify-content: space-between;
+  @include displayStyle(row, normal, space-between);
 }
 
 .hidden {
@@ -75,58 +67,44 @@ header {
 
 /* ~~~~~~ Your Trips Section ~~~~~~~*/
 .h3-container {
-  display: flex;
-  justify-content: space-between;
+  @include displayStyle(row, normal, space-between);
 }
 
 .all-trips {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  @include displayGrid();
   grid-row-gap: 10px;
   grid-column-gap: 10px;
-  margin-left: 10px;
-  height: 115vh;
+  @include dimensions(115vh, null, 10px);
 }
 
 .trip-container {
-  display: flex;
-  flex-direction: column;
-  width: 23vw;
-  height: 55vh;
-  border: 1px solid #37323E;
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px #37323E;
-  background-color: #C3F3C0;
+  @include displayStyle(column);
+  @include dimensions(55vh, 23vw);
+  @include boxStyle(#C3F3C0);
   opacity: 0.9;
   padding-left: 5px;
 }
 
 .vacation-pic {
   align-self: center;
-  width: 22vw;
-  height: 20vh;
+  @include dimensions(20vh, 22vw);
 }
 
 /* ~~~~~~ Login Page ~~~~~~~*/
 .login-page {
   height: 100%;
-  background-color: #49B6FF
+  background-color: $sky-blue;
 }
 
 .login-form {
-  margin-left: 400px;
+  @include dimensions(50vh, 40vw, 400px);
   margin-top: 100px;
-  background-color: #FAF8F7;
-  width: 40vw;
-  height: 50vh;
+  background-color: $white;
   border-radius: 5px;
 }
 
 .login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include displayStyle(column, center);
   padding-top: 20px;
 }
 
@@ -146,8 +124,7 @@ header {
 /* ~~~~~~ Media Queries ~~~~~~~*/
 @media screen and (max-width: 768px) {
   .login-form {
-    margin-left: 200px;
-    width: 50vw;
+    @include dimensions(null, 50vw, 200px);
   }
 
   .login-button {
@@ -172,14 +149,11 @@ header {
 
   .all-trips {
     margin-left: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    @include displayGrid(repeat(3, 1fr), repeat(3, 1fr));
   }
 
   .trip-container {
-    height: 65vh;
-    width: 30.5vw;
+    @include dimensions(65vh, 30.5vw);
   }
 
   .vacation-pic {
@@ -189,8 +163,7 @@ header {
 
 @media screen and (max-width: 425px) {
   .login-form {
-    margin-left: 40px;
-    width: 80vw;
+    @include dimensions(null, 80vw, 40px);
   }
 
   .login-input {
@@ -206,8 +179,7 @@ header {
   }
 
   .input-design {
-    width: 75vw;
-    height: 4.5vh;
+    @include dimensions(4.5vh, 75vw);
   }
 
   .scenery {
@@ -227,9 +199,7 @@ header {
 @media screen and (max-width: 375px) {
   .all-trips {
     margin-left: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    @include displayGrid(repeat(2, 1fr), repeat(2, 1fr));
     grid-column-gap: 7px;
   }
 
@@ -244,13 +214,11 @@ header {
 
 @media screen and (max-width: 320px) {
   .login-form {
-    margin-left: 10px;
-    width: 85vw;
+    @include dimensions(null, 85vw, 10px);
   }
 
   .input-container {
-    margin-left: 0;
-    width: 89vw;
+    @include dimensions(null, 89vw, 0);
   }
 
   .all-trips {
