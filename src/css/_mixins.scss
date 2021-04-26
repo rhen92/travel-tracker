@@ -1,0 +1,29 @@
+@mixin
+displayStyle($direction: row, $alignment: normal, $justification: normal) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $alignment;
+  justify-content: $justification
+}
+
+@mixin
+displayGrid($column-template: repeat(4, 1fr), $row-template: repeat(4, 1fr)) {
+  display: grid;
+  grid-template-columns: $column-template;
+  grid-template-rows: $row-template;
+}
+
+// @mixin
+// dimensions($height: null, $width: null, $margin-left: null) {
+//   height: $height;
+//   width: $width;
+//   margin-left: $margin-left
+// }
+//
+// @mixin
+// boxStyle($color: null, $border: 1px solid $black-coffee, $radius: 5px, $shadow: 3px 3px 3px $black-coffee) {
+//   background-color: $color;
+//   border: $border;
+//   border-radius: $radius;
+//   box-shadow: $shadow;
+// }
