@@ -1,5 +1,3 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-//$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 @import './_normalize.css';
 @import './_variables';
 @import './_mixins';
@@ -43,13 +41,13 @@ header {
 .input-design {
   @include dimensions(3vh, 40vw);
   margin: 5px 0 5px 0;
-  font-size: 15px;
+  font-size: $size-15;
 }
 
 .submit-button {
   margin-bottom: 10px;
   padding: 5px 10px 5px 10px;
-  font-size: 15px;
+  font-size: $size-15;
 }
 
 .scenery {
@@ -112,13 +110,13 @@ header {
   width: 25vw;
   padding: 5px;
   margin: 10px;
-  font-size: 15px;
+  font-size: $size-15;
 }
 
 .login-button {
   width: 5vw;
   margin: 10px;
-  font-size: 15px;
+  font-size: $size-15;
 }
 
 /* ~~~~~~ Media Queries ~~~~~~~*/
@@ -144,7 +142,7 @@ header {
   }
 
   .h3-container {
-    flex-direction: column;
+    @include displayStyle(column);
   }
 
   .all-trips {
