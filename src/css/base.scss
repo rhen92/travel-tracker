@@ -84,7 +84,8 @@ header {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   grid-row-gap: 10px;
-  margin-left: 20px;
+  grid-column-gap: 10px;
+  margin-left: 10px;
   height: 115vh;
 }
 
@@ -98,6 +99,7 @@ header {
   box-shadow: 3px 3px 3px #37323E;
   background-color: #C3F3C0;
   opacity: 0.9;
+  padding-left: 5px;
 }
 
 .vacation-pic {
@@ -139,4 +141,124 @@ header {
   width: 5vw;
   margin: 10px;
   font-size: 15px;
+}
+
+/* ~~~~~~ Media Queries ~~~~~~~*/
+@media screen and (max-width: 768px) {
+  .login-form {
+    margin-left: 200px;
+    width: 50vw;
+  }
+
+  .login-button {
+    width: 10vw;
+  }
+
+  .input-design {
+    width: 50vw;
+  }
+
+  .input-container {
+    width: 55vw;
+  }
+
+  .scenery {
+    width: 43vw;
+  }
+
+  .h3-container {
+    flex-direction: column;
+  }
+
+  .all-trips {
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .trip-container {
+    height: 65vh;
+    width: 30.5vw;
+  }
+
+  .vacation-pic {
+    width: 29vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .login-form {
+    margin-left: 40px;
+    width: 80vw;
+  }
+
+  .login-input {
+    width: 60vw;
+  }
+
+  .login-button {
+    width: 20vw;
+  }
+
+  .input-container {
+    width: 95vw;
+  }
+
+  .input-design {
+    width: 75vw;
+    height: 4.5vh;
+  }
+
+  .scenery {
+    display: none;
+  }
+
+  .all-trips {
+    margin-left: 0;
+    grid-column-gap: 3.5px;
+  }
+
+  .trip-container {
+    height: 68vh;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .all-trips {
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 7px;
+  }
+
+  .trip-container {
+    width: 45vw;
+  }
+
+  .vacation-pic {
+    width: 43vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .login-form {
+    margin-left: 10px;
+    width: 85vw;
+  }
+
+  .input-container {
+    margin-left: 0;
+    width: 89vw;
+  }
+
+  .all-trips {
+    margin-left: 0;
+    grid-column-gap: 5px;
+  }
+
+  .trip-container {
+    width: 43vw;
+  }
 }
