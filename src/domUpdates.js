@@ -2,26 +2,27 @@ import TripRepository from './TripRepository';
 import Trip from './Trip';
 import Traveler from './Traveler';
 
-let travelData;
-let destinationData;
-const trips = document.querySelector('#allTrips');
-const submitButton = document.querySelector('#submitButton');
-const destinationDropdown = document.querySelector('#localityDropdown');
 const defaultOption = document.createElement('option');
-const startCalendarInput = document.querySelector('.start');
-const endCalendarInput = document.querySelector('.end');
+const destinationDropdown = document.querySelector('#localityDropdown');
 const durationInput = document.querySelector('#duration');
-const travelerInput = document.querySelector('#numTravelers');
-const tripCost = document.querySelector('#tripCost');
-const tripForm = document.querySelector('#tripBooking');
-const usernameInput = document.querySelector('#usernameInput');
-const passwordInput = document.querySelector('#passwordInput');
+const endCalendarInput = document.querySelector('.end');
 const loginButton = document.querySelector('#loginButton');
 const loginPage = document.querySelector('#loginPage');
 const mainPage = document.querySelector('#mainPage');
-let user;
-let tripRepository;
+const passwordInput = document.querySelector('#passwordInput');
+const startCalendarInput = document.querySelector('.start');
+const submitButton = document.querySelector('#submitButton');
+const travelerInput = document.querySelector('#numTravelers');
+const tripCost = document.querySelector('#tripCost');
+const tripForm = document.querySelector('#tripBooking');
+const trips = document.querySelector('#allTrips');
+const usernameInput = document.querySelector('#usernameInput');
+
 let createdTrip;
+let destinationData;
+let tripRepository;
+let travelData;
+let user;
 
 const travelGET = () => fetch('http://localhost:3001/api/v1/trips')
   .then(response => checkResponseForGETS(response))
