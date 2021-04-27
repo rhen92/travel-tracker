@@ -49,7 +49,7 @@ function getData() {
 }
 
 function checkResponseForGETS(response) {
-  if(!response.ok) {
+  if (!response.ok) {
     trips.innerText = 'Could not get your trip data.'
   } else {
     return response.json();
@@ -176,8 +176,8 @@ function clearInputFields() {
 function showNewTrip() {
   destinationData.destinations.filter(trip => {
     if (trip.id === createdTrip.destinationID) {
-  trips.insertAdjacentHTML('afterbegin',
-  `  <article class="trip-container">
+      trips.insertAdjacentHTML('afterbegin',
+        `  <article class="trip-container">
     <h4>${trip.destination}</h4>
     <img class="vacation-pic" src=${trip.image} alt=${trip.alt}>
     <p>Status: ${createdTrip.status}</p>
@@ -185,7 +185,7 @@ function showNewTrip() {
     <p>Travelers: ${createdTrip.travelers}</p>
     <p>Date: ${new Date(createdTrip.date).toDateString()}</p>
   </article>`)
-  }
+    }
   });
 }
 
@@ -215,7 +215,7 @@ function checkForUser() {
       .then(data => showTrips())
       .then(data => showTotalSpentOnTrips())
       .catch(err => err.message);
-      hideLoginPage();
+    hideLoginPage();
   }
 }
 
