@@ -161,7 +161,7 @@ header {
 
 @media screen and (max-width: 425px) {
   .login-form {
-    @include dimensions(null, 80vw, 40px);
+    @include dimensions(null, 88vw, 20px);
   }
 
   .login-input {
@@ -173,7 +173,7 @@ header {
   }
 
   .input-container {
-    width: 95vw;
+    width: 98vw;
   }
 
   .input-design {
@@ -185,20 +185,24 @@ header {
   }
 
   .all-trips {
+    @include displayGrid(repeat(2, 1fr), repeat(2, 1fr));
     margin-left: 0;
-    grid-column-gap: 3.5px;
+    grid-column-gap: .5px;
   }
 
   .trip-container {
     height: 68vh;
+    width: 95%;
+  }
+
+  .vacation-pic {
+    width: 90%
   }
 }
 
 @media screen and (max-width: 375px) {
   .all-trips {
-    margin-left: 0;
-    @include displayGrid(repeat(2, 1fr), repeat(2, 1fr));
-    grid-column-gap: 7px;
+    margin-right: 10px;
   }
 
   .trip-container {
@@ -212,19 +216,23 @@ header {
 
 @media screen and (max-width: 320px) {
   .login-form {
-    @include dimensions(null, 85vw, 10px);
+    @include dimensions(null, 90vw, 10px);
   }
 
   .input-container {
-    @include dimensions(null, 89vw, 0);
+    @include dimensions(null, 93vw, 0);
   }
 
   .all-trips {
-    margin-left: 0;
-    grid-column-gap: 5px;
+    @include displayGrid(repeat(1, 1fr), repeat(1, 1fr));
   }
 
   .trip-container {
-    width: 43vw;
+    width: 100%;
+    height: 100%
+  }
+
+  .vacation-pic {
+    width: 95%
   }
 }
