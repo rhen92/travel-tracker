@@ -5,12 +5,18 @@ import datepicker from 'js-datepicker';
 let duration = null;
 const start = datepicker('.start', { id: 'calendar',
   minDate: new Date(),
-  onMonthChange: instance => { event.preventDefault() }
- });
+  onMonthChange: instance => {
+    event.preventDefault()
+  }
+});
 const end = datepicker('.end', { id: 'calendar',
   minDate: new Date(),
-  onMonthChange: instance => { event.preventDefault() } ,
-  onSelect: instances => { document.getElementById('duration').value = calculateRange() }
+  onMonthChange: instance => {
+    event.preventDefault()
+  },
+  onSelect: instances => {
+    document.getElementById('duration').value = calculateRange()
+  }
 });
 
 function calculateRange() {
