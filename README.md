@@ -37,7 +37,7 @@ To build an application to manage and track different trips for users
 ### Login View
 ![Login](https://media.giphy.com/media/LKKbxiX1F9q7NpQsIB/giphy.gif)
 ### User Dashboard
-![Dashboard](https://media.giphy.com/media/YdPLR5ecYYpeQRfSFF/giphy.gif)
+![Dashboard](https://media.giphy.com/media/IJA0pYQ0YCLrZUQHZs/giphy.gif)
 ### Accessibility
 <img width="1440" alt="Screen Shot 2021-04-27 at 9 40 42 AM" src="https://user-images.githubusercontent.com/76266623/116279790-2f1ddb80-a745-11eb-8021-a5be46c5d55f.png">
 
