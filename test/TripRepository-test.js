@@ -48,8 +48,7 @@ describe('Trip Repository', () => {
       estimatedFlightCostPerPerson: 90,
       image: 'https://images.unsplash.com/photo-1524478075552-c2763ea171b8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
       alt: 'aerial photography of rocky mountain under cloudy sky'
-    }
-    ];
+    }];
 
     tripRepository = new TripRepository([trip1, trip2, trip3], destination);
   });
@@ -75,7 +74,7 @@ describe('Trip Repository', () => {
   });
 
   it('should find total trip cost for user', () => {
-   expect(tripRepository.findTotalTripCostForUser([trip1])).to.equal(5819);
+    expect(tripRepository.findTotalTripCostForUser([trip1])).to.equal(5819);
   });
 
   it('should find next available id', () => {
